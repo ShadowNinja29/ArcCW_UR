@@ -266,6 +266,10 @@ SWEP.AttachmentElements = {
             {ind = 5, bg = 4},
             {ind = 7, bg = 1},
         },
+        AttPosMods = {[4] = {
+            vpos = Vector(0, .75, 10.65),
+            vang = Angle(90, 0, -90),
+        }}
     },
     ["ur_mp5_barrel_long"] = {
         VMBodygroups = {
@@ -310,6 +314,9 @@ SWEP.AttachmentElements = {
 
     ["receiver_lower"] = {
         VMBodygroups = {{ind = 8, bg = 1}},
+    },
+    ["receiver_lower_semi"] = {
+        VMBodygroups = {{ind = 8, bg = 2}},
     },
     ["receiver_lower_0"] = {
         VMBodygroups = {{ind = 8, bg = 0}},
@@ -404,6 +411,13 @@ SWEP.Hook_NameChange = function(wep,name)
             mid = "/10"
         elseif cal == "40sw" then
             mid = "/40"
+        elseif cal == "22lr" then
+            if barr == "sd" then
+                mid = "SD"
+                num = " .22 LR"
+            else
+                mid = " .22 LR"
+            end
         end
     else
         if barr == "kurz" then
@@ -427,7 +441,7 @@ SWEP.Hook_NameChange = function(wep,name)
             if barr == "sd" then
                 mid = "SD"
             end
-        
+
             if cal == "noburst" then
                 if stock == "default" then
                     num = "2"
@@ -788,7 +802,7 @@ SWEP.Attachments = {
             vpos = Vector(0, .75, 14.4),
             vang = Angle(90, 0, -90),
         },
-        ExcludeFlags = {"barrel_sd","mp5_kurz"}
+        ExcludeFlags = {"barrel_sd"}
     },
     {
         PrintName = "Underbarrel",
