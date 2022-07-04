@@ -68,8 +68,8 @@ SWEP.Range = 80 -- 3 shot until ~40m
 SWEP.Penetration = 9
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil
-SWEP.MuzzleVelocity = 315
-SWEP.PhysBulletMuzzleVelocity = 315
+
+SWEP.PhysBulletMuzzleVelocity = 253
 
 SWEP.BodyDamageMults = ArcCW.UC.BodyDamageMults
 
@@ -292,11 +292,11 @@ SWEP.AttachmentElements = {
     },
 
     ["ur_1911_cal_9mm"] = {
-        NameChange = "",
+        NameChange = "AMAS-9",
         TrueNameChange = "SR1911",
     },
     ["ur_1911_cal_10auto"] = {
-        NameChange = "",
+        NameChange = "AMAS Elite",
         TrueNameChange = "Delta Elite",
     },
 
@@ -584,9 +584,9 @@ SWEP.Attachments = {
         PrintName = "Optic",
         Slot = {"optic_lp"},
         DefaultAttName = "Iron Sights",
-        Bone = "vm_charge",
+        Bone = "vm_pivot",
         Offset = {
-            vpos = Vector(-0.01, -1, 3),
+            vpos = Vector(-0.01, -2.3, 1.6),
             vang = Angle(90, 0, -90),
         },
         InstalledEles = {"optic_rail"},
