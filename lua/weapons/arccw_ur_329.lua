@@ -11,10 +11,9 @@ SWEP.MuzzleEffect = "muzzleflash_pistol_deagle"
 SWEP.ShellEffect = "arccw_uc_shelleffect"
 SWEP.ShellModel = "models/weapons/arccw/uc_shells/50ae.mdl"
 SWEP.ShellScale = 1
-SWEP.ShellPitch = 90
 
 SWEP.MuzzleEffectAttachment = 1
-SWEP.CaseEffectAttachment = 2
+SWEP.CaseEffectAttachment = 1
 SWEP.TracerNum = 1
 SWEP.TracerWidth = 1
 SWEP.ShootPitch = 100
@@ -32,7 +31,7 @@ SWEP.TrueName = "Model 329PD"
 SWEP.Trivia_Class = "Revolver"
 SWEP.Trivia_Desc = [[Though commonly viewed as archaic, revolvers maintain a large following today for their reliability, accuracy, and evocative sentiment. This model was famously the "most powerful handgun in the world" at its time, though its usurpers have not changed the fact that it packs a mean punch.
 
-Switch to single-action mode to lighten the trigger pull, eliminating delay and increasing accuracy.]]
+Has a heavy trigger pull. Single-action mode removes trigger delay and increases accuracy, but requires manual cocking of the hammer.]]
 SWEP.Trivia_Manufacturer = "Sneed & Walwakashi"
 SWEP.Trivia_Calibre = ".44 Magnum"
 SWEP.Trivia_Mechanism = "Double-Action"
@@ -191,18 +190,39 @@ SWEP.WorldModelOffset = {
 -- Weapon sounds --
 
 local path = ")^weapons/arccw_ur/sw329/"
+local path1 = ")^weapons/arccw_ur/sw586/"
 local common = ")^/arccw_uc/common/"
 local rottle = {common .. "cloth_2.ogg", common .. "cloth_3.ogg", common .. "cloth_4.ogg", common .. "cloth_6.ogg", common .. "rattle.ogg"}
-SWEP.ShootSound = path .. "fire.ogg"
-SWEP.ShootSoundSilenced = path .. "fire_sup_dist.ogg"
-SWEP.DistantShootSoundSilenced = path .. "fire_sup.ogg"
 
-SWEP.ShootSoundSilenced = path .. "fire_sup.ogg"
+SWEP.ShootSound = {
+    path .. "fire-01.ogg",
+    path .. "fire-02.ogg",
+    path .. "fire-03.ogg",
+    path .. "fire-04.ogg",
+    path .. "fire-05.ogg",
+    path .. "fire-06.ogg"
+}
+SWEP.ShootSoundSilenced = {
+    path .. "fire-01.ogg",
+    path .. "fire-02.ogg",
+    path .. "fire-03.ogg",
+    path .. "fire-04.ogg",
+    path .. "fire-05.ogg",
+    path .. "fire-06.ogg"
+}
+
 SWEP.DistantShootSound = nil
-SWEP.DistantShootSoundSilenced = common .. "sup_tail.ogg"
-SWEP.ShootDrySound = path .. "dryfire.ogg"
+SWEP.DistantShootSoundSilenced = nil
+SWEP.ShootDrySound = path .. "drophammer.ogg"
 
-SWEP.DistantShootSoundOutdoors = { path .. "fire_dist.ogg" }
+SWEP.DistantShootSoundOutdoors = {
+    path .. "fire-dist-01.ogg",
+    path .. "fire-dist-02.ogg",
+    path .. "fire-dist-03.ogg",
+    path .. "fire-dist-04.ogg",
+    path .. "fire-dist-05.ogg",
+    path .. "fire-dist-06.ogg"
+}
 SWEP.DistantShootSoundIndoors = {
     common .. "fire-dist-int-shotgun-01.ogg",
     common .. "fire-dist-int-shotgun-02.ogg",
@@ -212,10 +232,20 @@ SWEP.DistantShootSoundIndoors = {
     common .. "fire-dist-int-shotgun-06.ogg"
 }
 SWEP.DistantShootSoundOutdoorsSilenced = {
-    common .. "sup_tail.ogg"
+    path .. "fire-dist-01.ogg",
+    path .. "fire-dist-02.ogg",
+    path .. "fire-dist-03.ogg",
+    path .. "fire-dist-04.ogg",
+    path .. "fire-dist-05.ogg",
+    path .. "fire-dist-06.ogg"
 }
 SWEP.DistantShootSoundIndoorsSilenced = {
-    common .. "sup_tail.ogg"
+    common .. "fire-dist-int-shotgun-01.ogg",
+    common .. "fire-dist-int-shotgun-02.ogg",
+    common .. "fire-dist-int-shotgun-03.ogg",
+    common .. "fire-dist-int-shotgun-04.ogg",
+    common .. "fire-dist-int-shotgun-05.ogg",
+    common .. "fire-dist-int-shotgun-06.ogg"
 }
 SWEP.DistantShootSoundOutdoorsVolume = 1
 SWEP.DistantShootSoundIndoorsVolume = 0.75
@@ -230,11 +260,17 @@ SWEP.BulletBones = {
 SWEP.DefaultBodygroups = "000000000"
 
 SWEP.AttachmentElements = {
+    ["ur_329_barrel_m29"] = {
+        VMBodygroups = { { ind = 1, bg = 1 } },
+        NameChange = "Thunderbolt .44",
+        TrueNameChange = "Model 29"
+    }
 }
 
 -- Animations --
 
 SWEP.Hook_Think = ArcCW.UC.ADSReload
+SWEP.RevolverReload = true
 
 SWEP.Animations = {
     ["idle"] = {
@@ -258,9 +294,9 @@ SWEP.Animations = {
 
     ["fire"] = {
         Source = "fire",
-        --Time = 0.9,
         SoundTable = {
-            { s = path .. "drophammer.ogg", t = 0 }
+            { s = path .. "drophammer.ogg", t = 0 },
+            { s = path .. "resettrigger.ogg", t = 0.2, v = 0.25 },
         },
     },
 
@@ -268,20 +304,15 @@ SWEP.Animations = {
         Source = "trigger",
         Time = 0.15,
         SoundTable = {
-            { s = path .. "resettrigger.ogg", t = 0, v = 0.05 },
-            { s = path .. "resettrigger.ogg", t = 0.07, v = 0.1 },
-            { s = path .. "resettrigger.ogg", t = 0.15, v = 0.2 }, -- need a very quiet "pull back trigger sound"
+            SoundTable = {{ s = {path .. "revolver_trigger-01.ogg", path .. "revolver_trigger-02.ogg", path .. "revolver_trigger-03.ogg"}, t = 0 }},
         },
     },
-
-    -- 7-R Reloads --
 
     ["reload"] = {
         Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
-        MinProgress = 1.3525,
-        --Time = 139 / 60,
-        LastClip1OutTime = 0.9,
+        MinProgress = 2.0,
+        ShellEjectAt = 1.3,
         LHIK = true,
         LHIKIn = 0.2,
         LHIKEaseIn = 0.2,
@@ -291,9 +322,11 @@ SWEP.Animations = {
             { s = rottle, t = 0 },
             { s = path .. "cyl_latch.ogg", t = 0.2 },
             { s = path .. "cyl_open.ogg", t = 0.5 },
-            { s = path .. "extractor_1.ogg", t = 1.1 },
+            { s = path .. "extractor_1.ogg", t = 1.0 },
+            { s = path1 .. "cylinder_extract.ogg", t = 1.0 },
+            { s = path .. "extractor_2.ogg", t = 1.125 },
             { s = common .. "magpouch_pull_small.ogg", t = 1.7 },
-            { s = path .. "speedloader.ogg", t = 2.3 },
+            { s = path1 .. "speedloader.ogg", t = 2.3 },
             { s = path .. "cyl_close.ogg", t = 3 },
             { s = rottle, t = 3.3 },
         },
@@ -307,12 +340,12 @@ SWEP.CamAttachment = 3
 SWEP.Attachments = {
     {
         PrintName = "Optic",
-        Slot = {"optic_lp","optic"},
+        Slot = {"optic_lp"},
         DefaultAttName = "Iron Sights",
         Bone = "Body",
         Offset = {
-            vpos = Vector(0, -5.3, 7),
-            vang = Angle(90, 0, -90),
+            vpos = Vector(3, -3.6, 0),
+            vang = Angle(0, 0, -90),
         },
     },
     {
@@ -338,32 +371,14 @@ SWEP.Attachments = {
         },
     },
     {
-        PrintName = "Muzzle",
-        DefaultAttName = "Standard Muzzle",
-        Slot = {"muzzle"},
-        Bone = "Barrel",
-        Offset = {
-            vpos = Vector(0, 0, 0.75),
-            vang = Angle(90, 0, -90),
-        },
-        InstalledEles = {"nofh"},
-        ExcludeFlags = {"barrel_annihilator"},
-    },
-    {
         PrintName = "Tactical",
         InstalledEles = {"tac_rail"},
         Slot = {"tac_pistol"},
         Bone = "Body",
         Offset = {
-            vpos = Vector(0, -3.7, 7),
-            vang = Angle(90, 0, -90),
+            vpos = Vector(6.75, -2.5, 0),
+            vang = Angle(0, 0, -90),
         },
-    },
-    {
-        PrintName = "Magazine",
-        Slot = {"ur_329_mag"},
-        DefaultAttIcon = Material("entities/att/acwatt_ur_deagle_mag_7.png","mips smooth"),
-        DefaultAttName = "6-Round Cylinder",
     },
     {
         PrintName = "Stock",
@@ -371,8 +386,8 @@ SWEP.Attachments = {
         VMScale = Vector(1.1, 1.1, 1.1),
         Bone = "Body",
         Offset = {
-            vpos = Vector(0, -0.25, 0),
-            vang = Angle(90, 0, -90),
+            vpos = Vector(-2, 2, 0),
+            vang = Angle(0, 0, -90),
         },
     },
     {
@@ -412,12 +427,5 @@ SWEP.Attachments = {
             vang = Angle(90, 0, -100),
         },
         VMScale = Vector(.6,.6,.6),
-    },
-    {
-        PrintName = "Finish",
-        Slot = {"ur_329_skin"},
-        DefaultAttName = "Stainless Steel",
-        DefaultAttIcon = Material("entities/att/acwatt_ur_deagle_finish_default.png","mips smooth"),
-        FreeSlot = true,
     },
 }
