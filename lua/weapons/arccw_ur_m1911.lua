@@ -187,9 +187,17 @@ SWEP.ShootSound = {
     path .. "fire-05.ogg",
     path .. "fire-06.ogg"
 }
-SWEP.ShootSoundSilenced = path .. "fire_sup.ogg"
+SWEP.ShootSoundSilenced = {
+    path .. "fire-sup-01.ogg",
+    path .. "fire-sup-02.ogg",
+    path .. "fire-sup-03.ogg",
+    path .. "fire-sup-04.ogg",
+    path .. "fire-sup-05.ogg",
+    path .. "fire-sup-06.ogg"
+}
+
 SWEP.DistantShootSound = nil
-SWEP.DistantShootSoundSilenced = common .. "sup_tail.ogg"
+SWEP.DistantShootSoundSilenced = nil
 SWEP.ShootDrySound = path .. "dryfire.ogg"
 
 SWEP.DistantShootSoundOutdoors = {
@@ -400,7 +408,11 @@ SWEP.Animations = {
         Source = "fire_empty",
         Time = 24 / 30,
         ShellEjectAt = 0,
-        SoundTable = {{ s = path .. "mech_last.ogg", t = 0 }},
+        SoundTable = {
+            {s = rottle, t = 0},
+            { s = path .. "mech_last.ogg", t = 0 },
+            { s = path .. "dryfire.ogg", t = 0.1 }
+        },
     },
 
     -- 7-R Reloads --
