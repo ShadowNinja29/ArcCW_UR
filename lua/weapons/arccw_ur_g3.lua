@@ -168,7 +168,8 @@ SWEP.Hook_AddShootSound = ArcCW.UC.InnyOuty
 
 SWEP.MuzzleEffect = "muzzleflash_6"
 SWEP.ShellEffect = "arccw_uc_shelleffect"
-SWEP.ShellModel = "models/weapons/arccw/uc_shells/762x39.mdl"
+SWEP.ShellModel = "models/weapons/arccw/uc_shells/556x45.mdl"
+SWEP.ShellScale = 1.145
 SWEP.ShellPitch = 90
 SWEP.ShellScale = 1
 SWEP.ShellRotateAngle = Angle(0, 0, 0)
@@ -224,7 +225,7 @@ SWEP.ExtraSightDist = 10
 SWEP.GuaranteeLaser = false
 
 SWEP.WorldModelOffset = {
-    pos = Vector(-7, 4, -4.5),
+    pos = Vector(-5, 3, -5.5),
     ang = Angle(-10, 0, 180)
 }
 
@@ -340,23 +341,25 @@ SWEP.Animations = {
         LHIKOut = 0.5,
         LHIKEaseOut = 0.25,
         MinProgress = 2.1,
-        LastClip1OutTime = 2,
+        LastClip1OutTime = 50/30,
         SoundTable = {
             {s = rottle,  t = 0.0},
-            {s = common .. "magpouch.ogg", t = 0.1},
-            {s = ratel, t = 0.25},
-            {s = path .. "magout.ogg", 	 t = 0.45},
-            {s = path .. "bonk.ogg", 	 t = 0.5},
-            {s = ratel, t = 0.5},
-            {s = rottle,  t = 0.75},
-            {s = path .. "magin.ogg",    t = 0.97},
-            {s = ratel, t = 1.1},
-            {s = common .. "rifle_magdrop.ogg", t = 1.15},
-            {s = rottle,  t = 1.15},
-            {s = path .. "chback.ogg",    t = 1.9},
-            {s = path .. "chamber.ogg",    t = 2.0},
-            {s = common .. "grab.ogg", t = 2.4},
-            {s = common .. "shoulder.ogg", t = 2.5},
+            {s = path .. "chback.ogg", t = 8/30},
+            {s = path .. "chlock.ogg", t = 15/30},
+            {s = ratel,  t = 23/30},
+            {s = rottle,  t = 23/30},
+            {s = path .. "magrel.ogg", t = 32/30},
+            {s = path .. "magout.ogg", t = 35/30},
+            {s = common .. "magpouch.ogg", t = 47/30},
+            {s = rottle,  t = 49/30},
+            {s = rottle,  t = 55/30},
+            {s = {common .. "rifle_magdrop_1.ogg",common .. "rifle_magdrop_2.ogg",common .. "rifle_magdrop_3.ogg",common .. "rifle_magdrop_4.ogg",common .. "rifle_magdrop.ogg"}, t = 51/30},
+            {s = path .. "struggle.ogg", t = 61/30},
+            {s = path .. "magin.ogg", t = 66/30},
+            {s = rottle,  t = 75/30},
+            {s = path .. "chslap.ogg", t = 80/30},
+            {s = common .. "grab.ogg", t = 92/30},
+            {s = common .. "shoulder.ogg", t = 93/30},
         },
     },
     ["unjam"] = {
