@@ -19,5 +19,13 @@ att.Add_BarrelLength = 3
 
 att.Mult_PhysBulletMuzzleVelocity = 1.15
 
+att.Override_IronSightStruct = { 
+     Pos = Vector(-2.97, -5.8, -0.18),
+     Ang = Angle(-0.5, -0.55, 5.148),
+     Magnification = 1,
+     SwitchToSound = "",
+     ViewModelFOV = 74,
+} 
+
 att.ActivateElements = {"ur_mp5_barrel_swordfish"}
 att.GivesFlags = {"barrel_sword"}
