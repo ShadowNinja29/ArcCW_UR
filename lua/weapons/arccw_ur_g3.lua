@@ -35,11 +35,11 @@ SWEP.DefaultBodygroups = "000000000000"
 
 -- Damage --
 
-SWEP.Damage = 55 -- 2 shot close range kill
-SWEP.DamageMin = 34 -- 3 shot long range kill
-SWEP.RangeMin = 30
-SWEP.Range = 300 -- 3 shot until ~170m
-SWEP.Penetration = 16
+SWEP.Damage = 75
+SWEP.DamageMin = 40
+SWEP.RangeMin = 50
+SWEP.Range = 400
+SWEP.Penetration = 20
 SWEP.DamageType = DMG_BULLET
 SWEP.ShootEntity = nil
 SWEP.MuzzleVelocity = 715
@@ -246,7 +246,7 @@ SWEP.Attachments = {
     {
         PrintName = "Barrel",
         Slot = "ur_g3_barrel",
-        DefaultAttName = "?\" Standard Barrel",
+        DefaultAttName = "18\" Standard Barrel",
         DefaultAttIcon = Material("entities/att/acwatt_ud_m16_barrel_default.png", "smooth mips"),
     },
     {
@@ -367,31 +367,30 @@ SWEP.Animations = {
         ShellEjectAt = 0,
         SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0 }},
     },
---    ["reload"] = {
---        Source = "reload",
---        TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
---        LHIK = true,
---        LHIKIn = 0.3,
---        LHIKOut = 0.65,
---        LHIKEaseOut = 0.25,
---        MinProgress = 1.3,
---        SoundTable = {
---            {s = rottle,  t = 0.0},
---            {s = common .. "magpouch.ogg", t = 0.1},
---            {s = ratel, t = 0.25},
---            {s = path .. "magout.ogg", 	 t = 0.45},
---            {s = ratel, t = 0.5},
---            {s = rottle,  t = 0.75},
---            {s = path .. "magin.ogg",    t = 0.95},
---            {s = ratel, t = 1.1},
---            {s = rottle,  t = 1.15},
---            {s = path .. "scrape.ogg",    t = 1.35},
---            {s = common .. "magpouchin.ogg", t = 1.35},
---            {s = common .. "shoulder.ogg", t = 2.05},
---            {s = common .. "grab.ogg", t = 2.1},
---        },
---    },
-    ["reload"] = {
+   ["reload"] = {
+       Source = "reload",
+       TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+       LHIK = true,
+       LHIKIn = 0.3,
+       LHIKOut = 0.65,
+       LHIKEaseOut = 0.25,
+       MinProgress = 1.3,
+       SoundTable = {
+            {s = rottle,  t = 0.0},
+            {s = ratel, t = 3/30},
+            {s = path .. "magout.ogg", 	 t = 11/30},
+            {s = common .. "magpouch.ogg", t = 26/30},
+            {s = ratel, t = 0.5},
+            {s = rottle,  t = 0.75},
+            {s = path .. "struggle.ogg", t = 39/30},
+            {s = path .. "magin.ogg", t = 44/30},
+            {s = ratel, t = 1.1},
+            {s = rottle,  t = 1.15},
+            {s = common .. "grab.ogg", t = 56/30},
+            {s = common .. "shoulder.ogg", t = 61/30},
+       },
+   },
+    ["reload_empty"] = {
         Source = "reload_empty",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         LHIK = true,
