@@ -58,8 +58,8 @@ SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_REVOLVER
 
 -- Damage parameters --
 
-SWEP.Damage = 60 -- 2 shot close range kill
-SWEP.DamageMin = 15 -- 7 shot long range kill
+SWEP.Damage = 75 -- 2 shot close range kill
+SWEP.DamageMin = 16 -- 7 shot long range kill
 SWEP.RangeMin = 10
 SWEP.Range = 160
 SWEP.Penetration = 10
@@ -194,6 +194,7 @@ SWEP.WorldModelOffset = {
 
 local path = ")^weapons/arccw_ur/sw329/"
 local path1 = ")^weapons/arccw_ur/sw586/"
+local path2 = ")^weapons/arccw_ur/1911/"
 local common = ")^/arccw_uc/common/"
 local rottle = {common .. "cloth_2.ogg", common .. "cloth_3.ogg", common .. "cloth_4.ogg", common .. "cloth_6.ogg", common .. "rattle.ogg"}
 
@@ -294,7 +295,7 @@ SWEP.Animations = {
         Source = "draw",
         MinProgress = .4,
         SoundTable = {
-            {s = path .. "draw.ogg", t = 0}, -- Not Temporary
+            {s = path2 .. "draw.ogg", t = 0}, -- Not Temporary
             {s = common .. "raise.ogg", t = 0.05},
         },
     },
@@ -302,7 +303,7 @@ SWEP.Animations = {
         Source = "draw_cocked",
         MinProgress = .4,
         SoundTable = {
-            {s = path .. "draw.ogg", t = 0}, -- Not Temporary
+            {s = path2 .. "draw.ogg", t = 0}, -- Not Temporary
             {s = common .. "raise.ogg", t = 0.05},
         },
     },
@@ -310,14 +311,14 @@ SWEP.Animations = {
         Source = "holster",
         SoundTable = {
             {s = common .. "cloth_2.ogg", t = 0},
-            {s = path .. "holster.ogg", t = 0.2}, -- Not Temporary
+            {s = path2 .. "holster.ogg", t = 0.2}, -- Not Temporary
         },
     },
     ["holster_cocked"] = {
         Source = "holster_cocked",
         SoundTable = {
             {s = common .. "cloth_2.ogg", t = 0},
-            {s = path .. "holster.ogg", t = 0.2}, -- Not Temporary
+            {s = path2 .. "holster.ogg", t = 0.2}, -- Not Temporary
         },
     },
 
@@ -347,26 +348,26 @@ SWEP.Animations = {
     ["cycle"] = {
         Source = "cocking",
         SoundTable = {
-            { s = { common .. "revolver_trigger-01.ogg", common .. "revolver_trigger-02.ogg", common .. "revolver_trigger-03.ogg" }, t = 0.2 }
+            { s = { common .. "revolver_trigger-01.ogg", common .. "revolver_trigger-03.ogg" }, t = 0.2 }
         }
     },
 
     ["1_to_2"] = {
         Source = "cocking",
         SoundTable = {
-            { s = { common .. "revolver_trigger-01.ogg", common .. "revolver_trigger-02.ogg", common .. "revolver_trigger-03.ogg" }, t = 0.2 }
+            { s = { common .. "revolver_trigger-01.ogg", common .. "revolver_trigger-03.ogg" }, t = 0.2 }
         }
     },
     ["2_to_1"] = {
         Source = "decocking",
         SoundTable = {
-            { s = { common .. "revolver_trigger-01.ogg", common .. "revolver_trigger-02.ogg", common .. "revolver_trigger-03.ogg" }, t = 0.2 }
+            { s = common .. "revolver_trigger-02.ogg", t = 0.2 }
         }
     },
     ["2_to_3"] = {
         Source = "decocking",
         SoundTable = {
-            { s = { common .. "revolver_trigger-01.ogg", common .. "revolver_trigger-02.ogg", common .. "revolver_trigger-03.ogg" }, t = 0.2 }
+            { s = common .. "revolver_trigger-02.ogg", t = 0.2 }
         }
     },
 
