@@ -772,13 +772,14 @@ SWEP.Attachments = {
     {
         PrintName = "Receiver",
         DefaultAttName = "7.62x39mm Reciever",
-        DefaultAttIcon = Material("entities/att/ur_ak/recievers/762.png", "mips smooth"),
+        DefaultAttIcon = Material("entities/att/uc_bullets/762x39.png", "mips smooth"),
         Slot = {"ur_ak_cal"},
         Bone = "tag_weapon",
         Offset = {
             vpos = Vector(2.8, -4.2, -11.5),
             vang = Angle(90, 0, -90),
         },
+        DefaultFlags = {"cal_default"}
     },
     {
         PrintName = "Magazine",
