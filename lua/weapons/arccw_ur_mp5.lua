@@ -155,7 +155,7 @@ SWEP.ShootSpeedMult = 0.95
 -- Length --
 
 SWEP.BarrelLength = 24
-SWEP.ExtraSightDist = 4
+SWEP.ExtraSightDist = 2
 
 -- Ironsights / Customization / Poses --
 
@@ -206,7 +206,14 @@ SWEP.ShootSound = {
     path .. "fire-02.ogg",
     path .. "fire-03.ogg"
 }
-SWEP.ShootSoundSilenced = path .. "fire_sup.ogg"
+SWEP.ShootSoundSilenced = {
+    path .. "fire-sup-01.ogg",
+    path .. "fire-sup-02.ogg",
+    path .. "fire-sup-03.ogg",
+    path .. "fire-sup-04.ogg",
+    path .. "fire-sup-05.ogg",
+    path .. "fire-sup-06.ogg"
+}
 SWEP.DistantShootSound = nil
 SWEP.DistantShootSoundSilenced = nil
 SWEP.ShootDrySound = path .. "dryfire.ogg"
@@ -325,6 +332,11 @@ SWEP.AttachmentElements = {
                 vpos = Vector(-0.2, 1.6, 10),
                 vang = Angle(90, 0, -90),
             }
+        },
+    },
+    ["ur_mp5_barrel_eod"] = {
+        VMBodygroups = {
+            {ind = 4, bg = 10},
         },
     },
     ["ur_mp5_barrel_kurz"] = {
@@ -963,7 +975,6 @@ SWEP.Attachments = {
         },
         CorrectivePos = Vector(-0.07, 0, 0),
         CorrectiveAng = Angle(1, 0.5, -5.5),
-        VMScale = Vector(.9, .9, .9),
         InstalledEles = {"ur_mp5_rail_optic"}
     },
     {
@@ -993,12 +1004,13 @@ SWEP.Attachments = {
             vpos = Vector(0, 0.3, 14.8),
             vang = Angle(90, 0, -90),
         },
-        ExcludeFlags = {"barrel_sd","barrel_sword"}
+        ExcludeFlags = {"barrel_sd","barrel_eod","barrel_sword"}
     },
     {
         PrintName = "Handguard",
         DefaultAttName = "Tropical Handguard",
         Slot = {"ur_mp5_hg"},
+        ExcludeFlags = {"barrel_sd", "barrel_eod"},
         Bone = "body",
         Offset = {
             vpos = Vector(0, .9, 10),
@@ -1022,10 +1034,10 @@ SWEP.Attachments = {
     },
     {
         PrintName = "Tactical",
-        Slot = {"tac_pistol"},
+        Slot = "tac",
         Bone = "body",
         Offset = {
-            vpos = Vector(-.61, 0.8, 12),
+            vpos = Vector(-1.1, 0.2, 8),
             vang = Angle(90, 0, 180),
         },
         VMScale = Vector(.8,.8,.8),

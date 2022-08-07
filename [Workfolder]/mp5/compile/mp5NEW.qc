@@ -44,6 +44,7 @@ $bodygroup "4" {
 	studio "kurzslimHG.smd"
 	studio "kurzmlokHG.smd"
 	blank
+	studio "eodHG.smd"
 }
 
 $bodygroup "5" {
@@ -55,7 +56,7 @@ $bodygroup "5" {
 
 $bodygroup "6" {
 	blank
-	studio "mp5RAIL.smd"
+	studio "mp5RAIL2.smd"
 }
 
 $bodygroup "boolet" {
