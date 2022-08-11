@@ -1,7 +1,10 @@
-att.PrintName = "G3 RIS Handguard"
+att.PrintName = "RIS Handguard"
 
-att.Description = "RIS handguard made for the G3. Fuckin idk cosmetic thing or smth."
+att.Description = "RIS handguard for modernizing the G3. Cosmetic only."
 att.AutoStats = true
+att.Desc_Neutrals = {
+    "uc.cosmetic"
+}
 
 att.Slot = "ur_g3_handguard"
 
