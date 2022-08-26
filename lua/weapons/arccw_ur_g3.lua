@@ -376,14 +376,15 @@ SWEP.AttachmentElements = {
 local hgbg = {
     ["ur_g3_hg_slim"] = 1,
     ["ur_g3_hg_pica"] = 2,
-    ["ur_g3_hg_51_mlok"] = 3,
-    ["ur_g3_hg_51_flash"] = 4,
+    ["ur_mp5_ub_mlok"] = 3,
+    ["ur_mp5_ub_surefire"] = 4,
 }
 local muzzlebg = {
     ["ur_g3_barrel_8"] = 2,
     ["ur_g3_barrel_12"] = 1,
     ["ur_g3_barrel_15"] = 4,
     ["ur_g3_barrel_26"] = 3,
+    ["default"] = 0,
 }
 local opticbg = {
     ["ur_g3_optic_psg1"] = 2,
@@ -399,7 +400,7 @@ SWEP.Hook_ModifyBodygroups = function(wep,data)
     if !IsValid(vm) then return end
 
     local atts = wep.Attachments
-    local barrel = atts[2].Installed
+    local barrel = atts[2].Installed or "default"
     local hg = atts[4].Installed
     local muzzle = atts[5].Installed
     local ub = atts[6].Installed or atts[15].Installed
@@ -464,7 +465,7 @@ SWEP.Hook_NameChange = function(wep)
         end
     elseif rec == "default" then -- not "else" here to allow the base's PSG1 namechange to happen
         if trueNames then
-            if atts[13].Installed == "arccw_uc_fg_civvy" then return "HK91" end
+            if atts[13].Installed == "uc_fg_civvy" then return "HK91" end
 
             local bLookupTrue = {
                 ["8"] = "HK51",
@@ -521,6 +522,7 @@ SWEP.Attachments = {
         Slot = "ur_g3_barrel",
         DefaultAttName = "18\" Standard Barrel",
         DefaultAttIcon = Material("entities/att/acwatt_ud_m16_barrel_20.png", "smooth mips"),
+        DefaultFlags = {"g3_not8"}
     },
     {
         PrintName = "Reciever",
