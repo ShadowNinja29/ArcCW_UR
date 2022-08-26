@@ -54,7 +54,7 @@ SWEP.Primary.ClipSize = 20
 
 -- Recoil --
 
-SWEP.Recoil = 1.5
+SWEP.Recoil = 1.4
 SWEP.RecoilSide = 0.6
 
 SWEP.RecoilRise = 0.6
@@ -270,7 +270,7 @@ SWEP.AttachmentElements = {
             {ind = 1, bg = 1},
             {ind = 3, bg = 2},
         },
-        TrueNameChange = "PSG-1",
+        TrueNameChange = "PSG1",
     },
 
     ["ur_g3_mag_10"] = {
@@ -477,7 +477,7 @@ SWEP.Hook_NameChange = function(wep)
             elseif atts[1].Installed == "ur_g3_optic_sg1" then
                 return "G3SG/1"
             else
-                return wep.TrueName
+                return (stock == "collapsible" and "G3A4") or wep.TrueName
             end
         end
     end
