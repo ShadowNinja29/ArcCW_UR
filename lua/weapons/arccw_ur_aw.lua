@@ -217,8 +217,11 @@ SWEP.HolsterAng = Angle(-15, 8, -10)
 SWEP.BarrelOffsetSighted = Vector(0, 0, 0)
 SWEP.BarrelOffsetHip = Vector(0, 0, 0)
 
-SWEP.CustomizePos = Vector(6.5, 0.8, -0.2)
-SWEP.CustomizeAng = Angle(8, 18, 15)
+SWEP.CustomizePos = Vector(0, 0, 0)
+SWEP.CustomizeAng = Angle(0, 0, 0)
+
+-- SWEP.CustomizePos = Vector(6.5, 0.8, -0.2)
+-- SWEP.CustomizeAng = Angle(8, 18, 15)
 
 SWEP.BarrelLength = 54
 
@@ -823,9 +826,34 @@ SWEP.Animations = {
         },
     },
 
-    ["enter_inspect"] = false,
-    ["idle_inspect"] = false,
-    ["exit_inspect"] = false,
+    ["enter_inspect"] = {
+        Source = "inspect_enter",
+        -- time = 35 / 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 2.5,
+        SoundTable = {
+            {s = rottle, t = 0},
+        },
+    },
+    ["idle_inspect"] = {
+        Source = "inspect_loop",
+        -- time = 72 / 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 999,
+    },
+    ["exit_inspect"] = {
+        Source = "inspect_exit",
+        -- time = 66 / 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 999,
+        SoundTable = {
+            {s = rottle, t = 0.25},
+            {s = rottle, t = 1.25},
+        },
+    },
 }
 
 SWEP.Hook_Think = ArcCW.UC.ADSReload

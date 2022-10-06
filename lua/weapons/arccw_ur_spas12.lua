@@ -182,6 +182,9 @@ SWEP.ActiveAng = Angle(1, 1, -1)
 SWEP.CrouchPos = Vector(-4, -2, 0)
 SWEP.CrouchAng = Angle(0, 0, -30)
 
+SWEP.CustomizePos = Vector(0, 0, 0)
+SWEP.CustomizeAng = Angle(0, 0, 0)
+
 SWEP.BarrelOffsetSighted = Vector(0, 0, -1)
 SWEP.BarrelOffsetHip = Vector(3, 0, -4.5)
 
@@ -512,6 +515,35 @@ SWEP.Animations = {
             {s = rottle,  t = 0.2},
             {s = ratel,  t = 0.35},
             {s = common .. "shoulder.ogg",  t = 0.55},
+        },
+    },
+
+    ["enter_inspect"] = {
+        Source = "inspect_enter",
+        -- time = 35 / 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 2.5,
+        SoundTable = {
+            {s = rottle, t = 0},
+        },
+    },
+    ["idle_inspect"] = {
+        Source = "inspect_loop",
+        -- time = 72 / 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 999,
+    },
+    ["exit_inspect"] = {
+        Source = "inspect_exit",
+        -- time = 66 / 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 999,
+        SoundTable = {
+            {s = rottle, t = 0.25},
+            {s = rottle, t = 1.25},
         },
     },
 }

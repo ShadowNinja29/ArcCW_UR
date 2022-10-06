@@ -177,11 +177,15 @@ SWEP.IronSightStruct = {
 SWEP.ActivePos = Vector(-0.3, 1.1, 0.6)
 SWEP.ActiveAng = Angle(0, 0, -1)
 
-SWEP.SprintPos = Vector(-0.5, 3, 1.5)
-SWEP.SprintAng = Angle(-12, 15, -15)
+-- SWEP.SprintPos = Vector(-0.5, 3, 1.5)
+-- SWEP.SprintAng = Angle(-12, 15, -15)
 
-SWEP.CustomizePos = Vector(6, -2, -1.5)
-SWEP.CustomizeAng = Angle(16, 28, 0)
+SWEP.SprintPos = Vector(0, -3, 0)
+SWEP.SprintAng = Angle(0, 0, 0)
+-- SWEP.CustomizePos = Vector(6, -2, -1.5)
+-- SWEP.CustomizeAng = Angle(16, 28, 0)
+SWEP.CustomizePos = Vector(0, 0, 0)
+SWEP.CustomizeAng = Angle(0, 0, 0)
 
 SWEP.CrouchPos = Vector(-2, 0.5, 0)
 SWEP.CrouchAng = Angle(0, 0, -14)
@@ -677,7 +681,7 @@ SWEP.Animations = {
             {s = common .. "magpouch.ogg", t = 0.05},
             {s = path .. "magout.ogg",        t = 0.4, c = ci},
             {s = {common .. "cloth_2.ogg", common .. "cloth_3.ogg", common .. "cloth_4.ogg", common .. "cloth_6.ogg", common .. "rattle.ogg"}, t = 0.25},
-            {s = path .. "magin.ogg",         t = 0.63, c = ci},
+            {s = path .. "magin.ogg",         t = 0.61, c = ci},
             {s = common .. "magpouchin.ogg", t = 1.25},
             {s = common .. "rattle2.ogg",  t = 1.55},
             {s = common .. "shoulder.ogg",  t = 1.5},
@@ -696,15 +700,15 @@ SWEP.Animations = {
         LHIKOut = 0.55,
         SoundTable = {
             {s = {common .. "cloth_2.ogg", common .. "cloth_3.ogg", common .. "cloth_4.ogg", common .. "cloth_6.ogg", common .. "rattle.ogg"}, t = 0},
-            {s = path .. "chback.ogg",         t = 0.066, c = ci},
-            {s = path .. "chlock.ogg",         t = 0.2, c = ci},
+            {s = path .. "chback.ogg",         t = 0.045, c = ci},
+            {s = path .. "chlock.ogg",         t = 0.18, c = ci},
             {s = common .. "magpouch.ogg", t = 0.4},
             {s = path .. "magout.ogg",        t = 0.86, c = ci},
             {s = {common .. "cloth_2.ogg", common .. "cloth_3.ogg", common .. "cloth_4.ogg", common .. "cloth_6.ogg", common .. "rattle.ogg"}, t = 0.25},
             {s = path .. "magin.ogg",         t = 1.13, c = ci},
             {s = common .. "magdrop_smg.ogg",  t = 1.5},
             {s = {common .. "cloth_2.ogg", common .. "cloth_3.ogg", common .. "cloth_4.ogg", common .. "cloth_6.ogg", common .. "rattle.ogg"}, t = 1.25},
-            {s = path .. "chamber.ogg",         t = 2.1, c = ci},
+            {s = path .. "chamber.ogg",         t = 2.05, c = ci},
             {s = common .. "rattle2.ogg",  t = 2.4},
             {s = common .. "shoulder.ogg",  t = 2.6},
         },
@@ -958,6 +962,46 @@ SWEP.Animations = {
             {s = path .. "chforward.ogg",         t = 2.1, c = ci},
             {s = common .. "shoulder.ogg",  t = 2.7},
         },
+    },
+
+    ["enter_inspect"] = {
+        Source = "inspect_enter",
+        -- time = 35 / 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 2.5,
+        SoundTable = {
+            {s = rottle, t = 0},
+        },
+    },
+    ["idle_inspect"] = {
+        Source = "inspect_loop",
+        -- time = 72 / 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 999,
+    },
+    ["exit_inspect"] = {
+        Source = "inspect_exit",
+        -- time = 66 / 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 999,
+        SoundTable = {
+            {s = rottle, t = 0.25},
+            {s = rottle, t = 1.25},
+        },
+    },
+
+    ["enter_sprint"] = {
+        Source = "sprint_enter",
+    },
+    ["idle_sprint"] = {
+        Source = "sprint_loop",
+    },
+    ["exit_sprint"] = {
+        Source = "sprint_exit",
+        Time = 0.9,
     },
 }
 
