@@ -16,8 +16,8 @@ SWEP.ShellScale = 1
 SWEP.UC_ShellColor = Color(0.7*255, 0.2*255, 0.2*255)
 
 SWEP.MuzzleEffectAttachment = 1
-SWEP.CaseEffectAttachment = 2
-SWEP.CamAttachment = 3
+SWEP.CaseEffectAttachment = 6
+SWEP.CamAttachment = 7
 
 -- Fake name --
 
@@ -59,7 +59,7 @@ SWEP.AnimShoot = ACT_HL2MP_GESTURE_RANGE_ATTACK_SHOTGUN
 
 SWEP.MirrorVMWM = true
 SWEP.WorldModelOffset = {
-    pos        =    Vector(-5.8, 5, -5),
+    pos        =    Vector(-4, 3, -5),
     ang        =    Angle(-10, 0, 180),
     bone    =    "ValveBiped.Bip01_R_Hand",
     scale = 1
@@ -89,11 +89,11 @@ SWEP.RejectMagSizeChange = true -- Signals to attachments that mag size shouldn'
 
 -- Recoil --
 
-SWEP.Recoil = 2.75
+SWEP.Recoil = 8
 SWEP.RecoilSide = 2
 
 SWEP.RecoilRise = 0.24
-SWEP.VisualRecoilMult = 1
+SWEP.VisualRecoilMult = 0
 SWEP.MaxRecoilBlowback = 1
 SWEP.MaxRecoilPunch = 1
 
@@ -129,7 +129,7 @@ SWEP.Firemodes = {
     }
 }
 
-SWEP.UC_CanManualAction = true
+SWEP.UC_CanManualAction = false
 
 SWEP.MalfunctionTakeRound = false
 
@@ -139,7 +139,8 @@ SWEP.ShootPitch = 100
 SWEP.ProceduralRegularFire = false
 SWEP.ProceduralIronFire = false
 
-SWEP.ReloadInSights = true
+SWEP.ReloadInSights = false
+SWEP.RevolverReload = true
 
 -- NPC --
 
@@ -170,30 +171,30 @@ SWEP.ExtraSightDist = 2
 -- Ironsights / Customization / Poses --
 
 SWEP.HoldtypeHolstered = "passive"
-SWEP.HoldtypeActive = "ar2"
-SWEP.HoldtypeSights = "rpg"
+SWEP.HoldtypeActive = "shotgun"
+SWEP.HoldtypeSights = "ar2"
 
 SWEP.IronSightStruct = {
-     Pos = Vector(-3.75, -4, 1.2),
-     Ang = Angle(.345, .03, 1.5),
+     Pos = Vector(-1.5, 0, 2.5),
+     Ang = Angle(0, 0, 3),
      Magnification = 1.05,
      SwitchToSound = "",
 }
 
-SWEP.SprintPos = Vector(-0.5, -4, -3)
-SWEP.SprintAng = Angle(3.5, 7, -20)
+SWEP.SprintPos = Vector(7, 0, 0)
+SWEP.SprintAng = Angle(-10, 40, -10)
 
-SWEP.HolsterPos = Vector(2.5, -1, -3)
-SWEP.HolsterAng = Angle(-3.5, 20, -20)
+SWEP.HolsterPos = Vector(7, 0, 0)
+SWEP.HolsterAng = Angle(-10, 40, -10)
 
-SWEP.ActivePos = Vector(0, -1, 0)
-SWEP.ActiveAng = Angle(1, 1, -1)
+SWEP.ActivePos = Vector(1, 1, 2)
+SWEP.ActiveAng = Angle(0, 0, 0)
 
-SWEP.CrouchPos = Vector(-4, -2, 0)
-SWEP.CrouchAng = Angle(0, 0, -30)
+SWEP.CrouchPos = Vector(-1, 2, 1)
+SWEP.CrouchAng = Angle(0, 0, -20)
 
-SWEP.CustomizePos = Vector(0, 0, 0)
-SWEP.CustomizeAng = Angle(0, 0, 0)
+SWEP.CustomizePos = Vector(10, 1, 2)
+SWEP.CustomizeAng = Angle(10, 40, 20)
 
 SWEP.BarrelOffsetSighted = Vector(0, 0, -1)
 SWEP.BarrelOffsetHip = Vector(3, 0, -4.5)
@@ -244,9 +245,9 @@ SWEP.Hook_AddShootSound = function(wep,data)
     ArcCW.UC.InnyOuty(wep)
 
     if wep:GetCurrentFiremode().Override_AmmoPerShot == 2 then
-        timer.Simple(.025,function()
+        timer.Simple(0.1, function()
             if IsValid(wep) then
-                wep:EmitSound(wep.ShootSound[math.random(1,#wep.ShootSound)], data.volume * .5,data.pitch,1,CHAN_WEAPON - 1)
+                wep:EmitSound(wep.ShootSound[math.random(1,#wep.ShootSound)], data.volume * .5, data.pitch, 1, CHAN_WEAPON - 1)
             end
         end)
     end
@@ -254,10 +255,19 @@ end
 
 -- Animations --
 
-SWEP.Hook_Think = ArcCW.UC.ADSReload
+SWEP.Hook_Think = function(wep)
+    local vm = wep:GetOwner():GetViewModel()
+    
+    local atts = wep.Attachments
+    local barrel = atts[1].Installed or "default"
+
+    vm:SetPoseParameter("long", (barrel == "default" or barrel == "ur_dbs_barrel_mid") and 1 or 0) -- not sure about mid barrel
+end
 
 local ratel = {common .. "rattle1.ogg", common .. "rattle2.ogg", common .. "rattle3.ogg"}
 local rottle = {common .. "cloth_2.ogg", common .. "cloth_3.ogg", common .. "cloth_4.ogg", common .. "cloth_6.ogg", common .. "rattle.ogg"}
+local shellin = {common .. "dbs-shell-insert-01.ogg", common .. "dbs-shell-insert-02.ogg", common .. "dbs-shell-insert-03.ogg", common .. "dbs-shell-insert-04.ogg", common .. "dbs-shell-insert-05.ogg", common .. "dbs-shell-insert-06.ogg", common .. "dbs-shell-insert-07.ogg", common .. "dbs-shell-insert-08.ogg", common .. "dbs-shell-insert-09.ogg", common .. "dbs-shell-insert-10.ogg", common .. "dbs-shell-insert-11.ogg", common .. "dbs-shell-insert-12.ogg"}
+local shellfall = {path .. "shell-fall-01.ogg", path .. "shell-fall-02.ogg", path .. "shell-fall-03.ogg", path .. "shell-fall-04.ogg"}
 
 SWEP.Animations = {
     ["idle"] = {
@@ -268,96 +278,57 @@ SWEP.Animations = {
         --Time = 20 / 30,
         SoundTable = ArcCW.UC.DrawSounds,
     },
-    ["draw_empty"] = {
-        Source = "draw", -- draw_empty
-        --Time = 20 / 30,
-        SoundTable = ArcCW.UC.DrawSounds,
-    },
     ["holster"] = {
         Source = "holster",
         --Time = 20 / 30,
         SoundTable = ArcCW.UC.HolsterSounds,
     },
-    ["holster_empty"] = {
-        Source = "holster", -- holster_empty
-        --Time = 20 / 30,
-        SoundTable = ArcCW.UC.HolsterSounds,
-    },
-    ["fire"] = {
-        Source = "fire_semi",
-        Time = 23 / 25,--30,
-        ShellEjectAt = 0.01,
+
+    ["fire"] = { -- first barrel
+        Source = "fire",
+        -- Time = 23 / 25,--30,
         SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
     },
     ["fire_iron"] = {
-        Source = "fire_semi",
-        Time = 23 / 25,--30,
-        ShellEjectAt = 0.01,
+        Source = "fire",
+        -- Time = 23 / 25,--30,
         SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0 }},
     },
-    ["fire_2bst"] = {
-        Source = "fire_semi",
-        Time = 35 / 25,--30,
-        ShellEjectAt = 0.01,
+
+    ["fire_empty"] = { -- second barrel
+        Source = "fire_empty", -- fire_empty
+        -- Time = 23 / 25,--30,
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
+    },
+    ["fire_iron_empty"] = {
+        Source = "fire_empty", -- fire_empty
+        -- Time = 23 / 25,--30,
+        SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0}},
+    },
+
+    ["fire_2bst"] = { -- both
+        Source = "fireboth",
+        -- Time = 35 / 25,--30,
         SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0 }},
         MinProgress = 0.4
     },
-    ["fire_manual"] = { -- No bolt cycling
-        Source = "fire_pump",
-        Time = 23 / 25,--30,
-        ShellEjectAt = false,
-        SoundTable = {{ s = common .. "manual_trigger.ogg", t = 0}},
-    },
-    ["cycle"] = {
-        Source = "cycle",
-        Time = 30 / 30,
-        ShellEjectAt = 0.1,
-        MinProgress = .5,
-        SoundTable = {
-            {s = path .. "forearm_back.ogg", t = 0},
-            {s = path1 .. "eject.ogg", t = 0.1},
-            {s = path .. "forearm_forward.ogg", t = 0.2}, -- Not temporary
-        },
-    },
-    ["unjam"] = {
-        Source = "cycle",
-        Time = 30 / 30,
-        ShellEjectAt = 0.01,
-        MinProgress = .25,
-        SoundTable = {
-            {s = path .. "forearm_back.ogg", t = 0},
-            {s = path1 .. "eject.ogg", t = 0.1},
-            {s = path .. "forearm_forward.ogg", t = 0.2}, -- Not temporary
-        },
-    },
-    ["fire_empty"] = {
-        Source = "fire_empty_semi", -- fire_empty
-        Time = 23 / 25,--30,
-        ShellEjectAt = 0.01,
-        SoundTable = {
-            {s = path1 .. "eject.ogg", t = 0}, -- Not temporary
-        },
-    },
-    ["fire_iron_empty"] = {
-        Source = "fire_empty_semi", -- fire_empty
-        Time = 23 / 25,--30,
-        ShellEjectAt = 0.01,
-        SoundTable = {
-            {s = path1 .. "eject.ogg", t = 0}, -- Not temporary
-        },
-    },
 
     ["reload"] = {
-        Source = "tac_manual",
+        Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
+        ShellEjectAt = 0.91,
         Checkpoints = {33, 55},
         FrameRate = 30,
         SoundTable = {
             {s = common .. "cloth_4.ogg", t = 0},
-            {s = path .. "magrel.ogg", t = 1.1},
-            {s = path .. "magout.ogg", t = 1.3},
-            {s = common .. "cloth_2.ogg", t = 1.6},
-            {s = path .. "magin.ogg", t = 2.6},
+            {s = path .. "open.ogg", t = 0.2},
+            {s = path .. "eject.ogg", t = 0.8},
+            {s = shellfall, t = 1.0},
+            {s = common .. "cloth_2.ogg", t = 1.1},
+            {s = path .. "struggle.ogg", t = 1.5, v = 0.5},
+            {s = shellin, t = 1.8},
+            {s = path .. "grab.ogg", t = 2.15, v = 0.5},
+            {s = path .. "close.ogg", t = 2.3},
             {s = common .. "shoulder.ogg", t = 3.8},
         },
         LHIK = true,
@@ -365,54 +336,28 @@ SWEP.Animations = {
         LHIKOut = 0.5,
     },
     ["reload_empty"] = {
-        Source = "empty_manual",
+        Source = "reload_empty",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        Checkpoints = {33, 55, 88},
+        Checkpoints = {33, 55, 88}, 
+        ShellEjectAt = 1.2,
         FrameRate = 30,
         SoundTable = {
             {s = common .. "cloth_4.ogg", t = 0},
-            {s = path .. "magrel.ogg", t = 1.1},
-            {s = path .. "magout.ogg", t = 1.3},
-            {s = common .. "cloth_2.ogg", t = 1.6},
-            {s = path .. "magin.ogg", t = 2.6},
-            {s = common .. "cloth_1.ogg", t = 2.0},
-            {s = path .. "chback.ogg", t = 4.5},
-            {s = common .. "cloth_3.ogg", t = 4.6},
-            {s = path .. "chamber.ogg", t = 5.0},
-            {s = common .. "shoulder.ogg", t = 5.8},
+            {s = path .. "open.ogg", t = 0.3},
+            {s = path .. "eject.ogg", t = 0.9},
+            {s = shellfall, t = 1.0},
+            {s = shellfall, t = 1.05},
+            {s = common .. "cloth_2.ogg", t = 1.1},
+            {s = path .. "struggle.ogg", t = 1.7, v = 0.5},
+            {s = shellin, t = 1.99},
+            {s = shellin, t = 2.0},
+            {s = path .. "grab.ogg", t = 2.37, v = 0.5},
+            {s = path .. "close.ogg", t = 2.5},
+            {s = common .. "shoulder.ogg", t = 3.8},
         },
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0.5,
-    },
-
-    ["enter_inspect"] = {
-        Source = "inspect_enter",
-        -- time = 35 / 60,
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 2.5,
-        SoundTable = {
-            {s = rottle, t = 0},
-        },
-    },
-    ["idle_inspect"] = {
-        Source = "inspect_loop",
-        -- time = 72 / 60,
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 999,
-    },
-    ["exit_inspect"] = {
-        Source = "inspect_exit",
-        -- time = 66 / 60,
-        LHIK = true,
-        LHIKIn = 0,
-        LHIKOut = 999,
-        SoundTable = {
-            {s = rottle, t = 0.25},
-            {s = rottle, t = 1.25},
-        },
     },
 }
 
@@ -423,57 +368,26 @@ SWEP.BulletBones = {
 -- Bodygroups --
 
 SWEP.AttachmentElements = {
-    
+    ["barrel_mid"] = { VMBodygroups = { {ind = 1, bg = 1} } },
+    ["barrel_compact"] = { VMBodygroups = { {ind = 1, bg = 4} } },
+    ["barrel_sw"] = { VMBodygroups = { {ind = 1, bg = 2} } },
+    ["barrel_swplus"] = { VMBodygroups = { {ind = 1, bg = 3}, {ind = 3, bg = 1} } },
+
+    ["stock_sw"] = { VMBodygroups = { {ind = 2, bg = 1} } },
 }
 
 SWEP.DefaultBodygroups = "00000000"
 
 SWEP.Attachments = {
     {
-        PrintName = "Optic",
-        DefaultAttName = "Iron Sights",
-        Slot = {"optic_lp", "optic"},
-        Bone = "spas_parent",
-        Offset = {
-            vpos = Vector(0, -1, 0.4),
-            vang = Angle(90, -90, -90),
-        },
-        CorrectiveAng = Angle(180,0,0),
-        SlideAmount = {
-            vmin = Vector(0, -2, 0.4),
-            vmax = Vector(0, 1, 0.4)
-        },
-        InstalledEles = {"rail_classic"},
-        DefaultEles = {"rail_none_fix"},
-    },
-    {
         PrintName = "Barrel",
-        DefaultAttName = "28\" Factory Barrel",
+        DefaultAttName = "99\" Factory Barrel",
         DefaultAttIcon = Material("entities/att/ur_spas/barrel_std.png", "smooth mips"),
         Slot = "ur_db_barrel",
     },
     {
-        PrintName = "Muzzle",
+        PrintName = "Choke",
         Slot = "choke",
-    },
-    -- {
-    --     PrintName = "Underbarrel",
-    --     Slot = {"foregrip"},
-    --     Bone = "pump",
-    --     MergeSlots = {13},
-    --     Offset = {
-    --         vpos = Vector(0, -5, .1),
-    --         vang = Angle(90, -90, -90),
-    --     },
-    -- },
-    {
-        PrintName = "Tactical",
-        Slot = {"tac_pistol"},
-        Bone = "spas_parent",
-        Offset = {
-            vpos = Vector(0, 20, -2.3),
-            vang = Angle(90, -90, -90),
-        },
     },
     {
         PrintName = "Stock",
@@ -497,50 +411,19 @@ SWEP.Attachments = {
         Slot = "uc_tp",
         DefaultAttName = "Basic Training"
     },
-    {
-        PrintName = "Internals",
-        Slot = "uc_fg", -- Fire group
-        DefaultAttName = "Standard Internals"
-    },
+    -- { -- i dont think any of these is valid for such gun
+    --     PrintName = "Internals",
+    --     Slot = "uc_fg", -- Fire group
+    --     DefaultAttName = "Standard Internals"
+    -- },
     {
         PrintName = "Charm",
-        Slot = {"charm", "fml_charm", "ur_spas12_charm"},
+        Slot = {"charm", "fml_charm"},
         FreeSlot = true,
-        Bone = "spas_parent",
+        Bone = "body",
         Offset = {
-            vpos = Vector(0.6, .5, -1.5),
-            vang = Angle(90, -90, -90),
+            vpos = Vector(-0.55, 1, -0.5),
+            vang = Angle(0, 90, 0),
         },
     },
-    -- {
-    --     PrintName = "M203 slot",
-    --     Slot = "uc_ubgl",
-    --     Bone = "pump",
-    --     Offset = {
-    --         vpos = Vector(0, -5, 1.25),
-    --         vang = Angle(90, -90, -90),
-    --     },
-    --     Hidden = true,
-    -- },
 }
-
-local lookup_barrel = {
-    default = 1,
-    ur_spas12_comp = 1,
-    ur_spas12_barrel_short = 0,
-}
-
-local lookup_tube = {
-    default = 1,
-    ur_spas12_tube_reduced = 0,
-}
-
-SWEP.Hook_ExtraFlags = function(wep, data)
-
-    local barrel = wep.Attachments[2].Installed and lookup_barrel[wep.Attachments[2].Installed] or lookup_barrel["default"]
-    local tube = wep.Attachments[7].Installed and lookup_tube[wep.Attachments[7].Installed] or lookup_tube["default"]
-
-    if barrel < tube then
-        table.insert(data, "nomuzzleblocking")
-    end
-end
