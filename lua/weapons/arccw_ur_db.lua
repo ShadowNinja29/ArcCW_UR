@@ -89,7 +89,7 @@ SWEP.RejectMagSizeChange = true -- Signals to attachments that mag size shouldn'
 
 -- Recoil --
 
-SWEP.Recoil = 8
+SWEP.Recoil = 2.8
 SWEP.RecoilSide = 2
 
 SWEP.RecoilRise = 0.24
@@ -116,6 +116,7 @@ SWEP.Firemodes = {
         Mult_Damage = 2,
         Mult_DamageMin = 2,
         Mult_Recoil = 1.5,
+        Mult_RPM = .5,
 
         -- Mode = -2,
         -- Mult_RPM = 3,
@@ -129,7 +130,7 @@ SWEP.Firemodes = {
     }
 }
 
-SWEP.UC_CanManualAction = false
+SWEP.UC_CanManualAction = true
 
 SWEP.MalfunctionTakeRound = false
 
@@ -171,8 +172,8 @@ SWEP.ExtraSightDist = 2
 -- Ironsights / Customization / Poses --
 
 SWEP.HoldtypeHolstered = "passive"
-SWEP.HoldtypeActive = "shotgun"
-SWEP.HoldtypeSights = "ar2"
+SWEP.HoldtypeActive = "ar2"
+SWEP.HoldtypeSights = "rpg"
 
 SWEP.IronSightStruct = {
      Pos = Vector(-1.5, 0, 2.5),
@@ -276,7 +277,11 @@ SWEP.Animations = {
     ["draw"] = {
         Source = "draw",
         --Time = 20 / 30,
-        SoundTable = ArcCW.UC.DrawSounds,
+        SoundTable = {
+            {s = rottle, t = 0},
+            {s = path .. "grab.ogg", t = 0.2},
+            {s = path .. "shoulder.ogg", t = 0.5},
+        },
     },
     ["holster"] = {
         Source = "holster",
@@ -329,11 +334,13 @@ SWEP.Animations = {
             {s = shellin, t = 1.8},
             {s = path .. "grab.ogg", t = 2.15, v = 0.5},
             {s = path .. "close.ogg", t = 2.3},
-            {s = common .. "shoulder.ogg", t = 3.8},
+            {s = common .. "shoulder.ogg", t = 2.4},
+            {s = path .. "shoulder.ogg", t = 2.675},
         },
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0.5,
+        MinProgress = 2.05,
     },
     ["reload_empty"] = {
         Source = "reload_empty",
@@ -353,11 +360,13 @@ SWEP.Animations = {
             {s = shellin, t = 2.0},
             {s = path .. "grab.ogg", t = 2.37, v = 0.5},
             {s = path .. "close.ogg", t = 2.5},
-            {s = common .. "shoulder.ogg", t = 3.8},
+            {s = common .. "shoulder.ogg", t = 2.84},
+            {s = path .. "shoulder.ogg", t = 3.0},
         },
         LHIK = true,
         LHIKIn = 0.5,
         LHIKOut = 0.5,
+        MinProgress = 2.05,
     },
 }
 
@@ -381,8 +390,8 @@ SWEP.DefaultBodygroups = "00000000"
 SWEP.Attachments = {
     {
         PrintName = "Barrel",
-        DefaultAttName = "99\" Factory Barrel",
-        DefaultAttIcon = Material("entities/att/ur_spas/barrel_std.png", "smooth mips"),
+        DefaultAttName = "26\" Full-size Barrel",
+        DefaultAttIcon = Material("entities/att/ur_dbs/blong.png", "smooth mips"),
         Slot = "ur_db_barrel",
     },
     {
@@ -393,7 +402,7 @@ SWEP.Attachments = {
         PrintName = "Stock",
         Slot = {"ur_db_stock"},
         DefaultAttName = "Wooden Stock",
-        DefaultAttIcon = Material("entities/att/ur_spas/stock_std.png", "smooth mips"),
+        DefaultAttIcon = Material("entities/att/ur_dbs/s.png", "smooth mips"),
     },
     {
         PrintName = "Ammo Type",
@@ -411,11 +420,11 @@ SWEP.Attachments = {
         Slot = "uc_tp",
         DefaultAttName = "Basic Training"
     },
-    -- { -- i dont think any of these is valid for such gun
-    --     PrintName = "Internals",
-    --     Slot = "uc_fg", -- Fire group
-    --     DefaultAttName = "Standard Internals"
-    -- },
+    { -- i dont think any of these is valid for such gun
+        PrintName = "Internals",
+        Slot = "uc_fg_singleshot", -- Fire group
+        DefaultAttName = "Standard Internals"
+    },
     {
         PrintName = "Charm",
         Slot = {"charm", "fml_charm"},
