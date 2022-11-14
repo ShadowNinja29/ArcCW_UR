@@ -133,6 +133,7 @@ SWEP.Firemodes = {
 SWEP.UC_CanManualAction = true
 
 SWEP.MalfunctionTakeRound = false
+SWEP.MalfunctionMean = math.huge -- Theoretically it will never malfunction
 
 SWEP.ShootVol = 160
 SWEP.ShootPitch = 100
@@ -285,7 +286,7 @@ SWEP.Animations = {
     },
     ["holster"] = {
         Source = "holster",
-        --Time = 20 / 30,
+        Time = 20 / 30,
         SoundTable = ArcCW.UC.HolsterSounds,
     },
 
@@ -395,7 +396,7 @@ SWEP.Attachments = {
         Slot = "ur_db_barrel",
     },
     {
-        PrintName = "Choke",
+        PrintName = "Muzzle",
         Slot = "choke",
     },
     {
