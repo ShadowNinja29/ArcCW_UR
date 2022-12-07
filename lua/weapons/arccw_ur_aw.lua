@@ -11,7 +11,7 @@ if !GetConVar("arccw_truenames"):GetBool() then
 end
 
 SWEP.Trivia_Class = "Sniper Rifle"
-SWEP.Trivia_Desc = "The Arctic Warfare: a heavy, purpose-designed rifle for extreme-range combat under extreme climates. A rifle of this family claimed what was once the most distant confirmed sniper kill in military history, at almost 2.5 kilometers.\nFew targets can stand up to a well-placed shot, but its long bolt pull and reload time are an encumbrance outside of its preferred environment.\n\nOne shot. One kill. You know the routine."
+SWEP.Trivia_Desc = "The Arctic Warfare: a heavy, purpose-designed rifle for extreme-range combat under extreme climates. Originally developed as a replacement for the British Army's aged sniper rifles, it would evolve cold weather adaptations to address similar problems in the Swedish miltary. A rifle of this family claimed what was once the most distant confirmed sniper kill in military history, at almost 2.5 kilometers.\nFew targets can stand up to a well-placed shot, but its long bolt pull and reload time are an encumbrance outside of its preferred environment.\n\nOne shot. One kill. You know the routine."
 SWEP.Trivia_Manufacturer = "Accuracy International"
 SWEP.Trivia_Calibre = "7.62x51mm NATO"
 SWEP.Trivia_Mechanism = "Bolt Action"
@@ -155,12 +155,12 @@ SWEP.DistantShootSoundSilenced = nil
 SWEP.ShootDrySound = testpath .. "dryfire.ogg"
 
 SWEP.DistantShootSoundOutdoors = {
-    testpath .. "fire-dist-01.ogg",
-    testpath .. "fire-dist-02.ogg",
-    testpath .. "fire-dist-03.ogg",
-    testpath .. "fire-dist-04.ogg",
-    testpath .. "fire-dist-05.ogg",
-    testpath .. "fire-dist-06.ogg"
+    path1 .. "fire-dist-01.ogg",
+    path1 .. "fire-dist-02.ogg",
+    path1 .. "fire-dist-03.ogg",
+    path1 .. "fire-dist-04.ogg",
+    path1 .. "fire-dist-05.ogg",
+    path1 .. "fire-dist-06.ogg"
 }
 SWEP.DistantShootSoundIndoors = {
     common .. "fire-dist-int-shotgun-01.ogg",
