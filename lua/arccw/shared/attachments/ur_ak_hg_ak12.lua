@@ -11,5 +11,10 @@ att.Mult_Sway = .9
 att.Mult_ShootSpeedMult = 1.1
 att.Mult_Recoil = 1.1
 
-att.GivesFlags = {"ak_railedguard","nodong"}
+att.GivesFlags = {"ak_railedguard", "nodong"}
 att.ActivateElements = {"handguard_ak12", "sight_ak12"}
+
+-- Goes into standalone AK pack
+att.Ignore = true
+att.Icon = Material("entities/att/obsolete.png", "mips smooth")
+att.Description = "stop looking at deprecated shit you suka"

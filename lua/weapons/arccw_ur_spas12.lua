@@ -13,7 +13,7 @@ SWEP.ShellModel = "models/weapons/arccw/uc_shells/12g.mdl"
 SWEP.ShellPitch = 100
 SWEP.ShellSounds = ArcCW.ShotgunShellSoundsTable
 SWEP.ShellScale = 1
-SWEP.UC_ShellColor = Color(0.7*255, 0.2*255, 0.2*255)
+SWEP.UC_ShellColor = Color(0.7 * 255, 0.2 * 255, 0.2 * 255)
 
 SWEP.MuzzleEffectAttachment = 1
 SWEP.CaseEffectAttachment = 2
@@ -30,10 +30,10 @@ SWEP.TrueName = "SPAS-12"
 -- Trivia --
 
 SWEP.Trivia_Class = "Shotgun"
-SWEP.Trivia_Desc = [[Flexible combat shotgun with the ability to toggle between manual and semi-automatic action. This "dual-mode" operation, as marketed to law enforcement, allows the weapon to accept low pressure, less-lethal ammunition that lacks the energy to properly extract.
-The weapon's attempts to reach the American civilian market may have been struck down by legal encumberances, but it remains prominent in culture for its intimidating appearance.
+SWEP.Trivia_Desc = [[Flexible combat shotgun with the ability to toggle between manual and semi-automatic action. This "dual-mode" operationw allows the weapon to accept low pressure, less-lethal ammunition that lacks the energy to extract itself.
+The weapon's attempts to reach the American civilian market may have been struck down by legal encumberances, but it remains prominent in popular culture for its intimidating and tactical appearance.
 
-Switch to pump-action mode to increase accuracy and aid ammo conservation.]]
+Switch to pump-action mode to tighten spread and conserve ammo.]]
 SWEP.Trivia_Manufacturer = "Iscapelli Armaments"
 SWEP.Trivia_Calibre = "12 Gauge"
 SWEP.Trivia_Mechanism = "Hybrid"
@@ -309,6 +309,7 @@ SWEP.Animations = {
     ["fire_manual"] = { -- No bolt cycling
         Source = "fire_pump",
         Time = 23 / 25,--30,
+        MinProgress = 0.2,
         ShellEjectAt = false,
         SoundTable = {{ s = common .. "manual_trigger.ogg", t = 0}},
     },
@@ -316,7 +317,7 @@ SWEP.Animations = {
         Source = "cycle",
         Time = 30 / 30,
         ShellEjectAt = 0.1,
-        MinProgress = .5,
+        MinProgress = 0.4,
         SoundTable = {
             {s = path .. "forearm_back.ogg", t = 0},
             {s = path1 .. "eject.ogg", t = 0.1},
@@ -612,6 +613,22 @@ SWEP.AttachmentElements = {
             },
         },
         Override_Firemodes_Priority = 10,
+    },
+    ["uc_spas_slam"] = {
+        RequireFlags = {"freeman", "needsmanual"},
+        Override_Firemodes = {
+            {
+                Mode = 2,
+                PrintName = "fcg.slam",
+                Override_ManualAction = true,
+                Mult_AccuracyMOA = 0.8,
+                Mult_HipDispersion = 0.8,
+            },
+            {
+                Mode = 0,
+            },
+        },
+        Override_Firemodes_Priority = 15,
     },
     ["ur_spas12_barrel_short"] = {
         VMBodygroups = {{ind = 3, bg = 1}},
