@@ -609,10 +609,10 @@ SWEP.Animations = {
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         LHIK = true,
         LHIKIn = 0.3,
-        LHIKOut = 0.65,
+        LHIKOut = 1,
         Time = 85 / 30,
         LHIKEaseOut = 0.25,
-        MinProgress = 2.5,
+        MinProgress = 1.5,
         SoundTable = {
             {s = rottle,                             t = 0.1},
             {s = testpath .. "magrel.ogg", 	t = 0.2},
@@ -630,7 +630,7 @@ SWEP.Animations = {
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         LHIK = true,
         LHIKIn = 0.3,
-        LHIKOut = 0.65,
+        LHIKOut = 1.15,
         LHIKEaseOut = 0.25,
         MinProgress = 2.5,
         SoundTable = {
@@ -650,7 +650,7 @@ SWEP.Animations = {
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
         LHIK = true,
         LHIKIn = 0.3,
-        LHIKOut = 0.65,
+        LHIKOut = 1.15,
         LHIKEaseOut = 0.25,
         MinProgress = 2.5,
         Time = 3.4,
@@ -670,7 +670,7 @@ SWEP.Animations = {
     ["reload_empty"] = {
         Source = "reload_empty",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        LHIK = true,
+        LHIK = false,
         LHIKIn = 0.9,
         LHIKOut = 1.25,
         LHIKEaseIn = 0.1,
@@ -703,7 +703,7 @@ SWEP.Animations = {
     ["reload_empty_10"] = {
         Source = "reload_empty_exte",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        LHIK = true,
+        LHIK = false,
         LHIKIn = 0.9,
         LHIKOut = 1.25,
         LHIKEaseIn = 0.1,
@@ -735,7 +735,7 @@ SWEP.Animations = {
     ["reload_empty_338"] = {
         Source = "reload_empty_magnum",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_AR2,
-        LHIK = true,
+        LHIK = false,
         LHIKIn = 0.9,
         LHIKOut = 1.25,
         LHIKEaseIn = 0.1,
@@ -864,10 +864,15 @@ SWEP.Animations = {
         LHIKIn = 0,
         LHIKOut = 999, -- maybe im dumb
         SoundTable = {
-            {s = common .. "movement-sniper-04.ogg", t = 0.05},
+            {s = common .. "movement-sniper-01.ogg", t = 0.05},
             {s = rottle, t = 0.25},
-            {s = rottle, t = 1.2},
+            {s = testpath .. "boltup_inspect.ogg",          t = 1.2},
             {s = common .. "movement-sniper-03.ogg", t = 1.25},
+            {s = testpath .. "boltback_inspect.ogg",        t = 1.35},
+            {s = testpath .. "boltforward_inspect.ogg",     t = 1.8},
+            {s = testpath .. "boltdown_inspect.ogg",        t = 1.9},
+            {s = rottle, t = 2.0},
+            {s = common .. "movement-sniper-04.ogg", t = 2.2},
         },
     },
     ["enter_inspect_empty"] = { -- Animations needed!
@@ -895,10 +900,15 @@ SWEP.Animations = {
         LHIKIn = 0,
         LHIKOut = 999, -- maybe im dumb
         SoundTable = {
-            {s = rutle, t = 0.2},
+            {s = common .. "movement-sniper-01.ogg", t = 0.05},
             {s = rottle, t = 0.25},
-            {s = rottle, t = 1.2},
-            {s = rutle, t = 1.25},
+            {s = testpath .. "boltup_inspect.ogg",          t = 1.2},
+            {s = common .. "movement-sniper-03.ogg", t = 1.25},
+            {s = testpath .. "boltback_inspect.ogg",        t = 1.35},
+            {s = testpath .. "boltforward_inspect.ogg",     t = 1.8},
+            {s = testpath .. "boltdown_inspect.ogg",        t = 1.9},
+            {s = rottle, t = 2.0},
+            {s = common .. "movement-sniper-04.ogg", t = 2.2},
         },
     },
 }
