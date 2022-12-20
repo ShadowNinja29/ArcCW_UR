@@ -33,9 +33,11 @@ SWEP.TrueName = "MP5A4"
 -- Trivia --
 
 SWEP.Trivia_Class = "Submachine Gun"
-SWEP.Trivia_Desc = [[Versatile submachine gun known for its use by high profile police units around the world, most famously by the British SAS during the Iranian embassy siege. While not the most cutting-edge weapon, it remains a classic despite multiple newer alternatives from both HK and its competitors.
+SWEP.Trivia_Desc = [[Versatile submachine gun known for its use by high profile police units around the world, most famously by the British SAS during the Iranian embassy siege. Its reliable closed-bolt design and craftsmanship allowed it to remain relevant among new generations of submachine guns.
 
-If accurate, sophisticated close-combat performance is what you're looking for, no weapon has a better track record.]]
+If accurate, sophisticated close-combat performance is what you're looking for, no weapon has a better track record.
+
+Switch to burst fire mode to reduce dispersion from moving and hipfiring.]]
 SWEP.Trivia_Manufacturer = "Crowdley & Nelson"
 SWEP.Trivia_Calibre = "9x19mm Parabellum"
 SWEP.Trivia_Mechanism = "Roller-Delayed Blowback"
@@ -107,6 +109,8 @@ SWEP.Firemodes = {
     },
     {
         Mode = -3,
+        Mult_MoveDispersion = 0.75,
+        Mult_HipDispersion = 0.9,
     },
     {
         Mode = 1,
@@ -1012,7 +1016,7 @@ SWEP.Animations = {
         LHIKIn = 0.2,
         LHIKEaseIn = 0.2,
         LHIKOut = 0,
-        Time = .75,
+        Time = .5,
     },
     ["idle_sprint"] = {
         Source = "sprint_loop",
@@ -1026,7 +1030,7 @@ SWEP.Animations = {
         LHIKIn = 0,
         LHIKEaseOut = 0.4,
         LHIKOut = 0.5,
-        Time = .75,
+        Time = .5,
     },
 }
 
