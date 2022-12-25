@@ -73,11 +73,8 @@ SWEP.BodyDamageMults = ArcCW.UC.BodyDamageMults
 
 -- Jamming --
 
-SWEP.Malfunction = false
-SWEP.MalfunctionJam = false
---SWEP.MalfunctionMean = 21
--- SWEP.MalfunctionPostFire = true
--- SWEP.MalfunctionTakeRound = false
+SWEP.MalfunctionTakeRound = false
+SWEP.MalfunctionMean = math.huge -- Theoretically it will never malfunction
 
 -- Mag size --
 
@@ -162,9 +159,6 @@ SWEP.ExtraSightDist = 10
 
 -- Ironsights / Customization / Poses --
 
-SWEP.HolsterPos = Vector(0.3, 1, 0)
-SWEP.HolsterAng = Angle(-3, 9, -12)
-
 SWEP.HoldtypeHolstered = "normal"
 SWEP.HoldtypeActive = "revolver"
 SWEP.HoldtypeSights = "revolver"
@@ -180,11 +174,17 @@ SWEP.IronSightStruct = {
 SWEP.ActivePos = Vector(0, 2, 0.9)
 SWEP.ActiveAng = Angle(0, 0, -1)
 
-SWEP.CustomizePos = Vector(1, -2, -1)
-SWEP.CustomizeAng = Angle(15, 15, 0)
+SWEP.CustomizePos = Vector(2, 0, -1.5)
+SWEP.CustomizeAng = Angle(15, 15, 05)
 
 SWEP.CrouchPos = Vector(-2.2, 1, 0.6)
 SWEP.CrouchAng = Angle(0, 0, -14)
+
+SWEP.HolsterPos = Vector(-1, 2, 1)
+SWEP.HolsterAng = Angle(-15.5, 2, -4)
+
+SWEP.SprintPos = Vector(0.3, 1, 0)
+SWEP.SprintAng = Angle(-3, 9, -12)
 
 SWEP.MirrorVMWM = true
 SWEP.WorldModelOffset = {
@@ -307,6 +307,15 @@ SWEP.Animations = {
         Source = "idle_cocked",
         Time = 3,
     },
+    ["ready"] = {
+        Source = "ready",
+        Time = 86 / 60,
+        SoundTable = {
+            {s = path2 .. "draw.ogg", t = 0},
+            { s = path1 .. "cylinder_in.ogg", t = 0.2 },
+            {s = common .. "raise.ogg", t = 0.55},
+        },
+    },
     ["draw"] = {
         Source = "draw",
         Time = 0.7,
@@ -372,6 +381,14 @@ SWEP.Animations = {
     },
 
     ["cycle"] = {
+        Source = "cocking",
+        MinProgress = 0.5,
+        SoundTable = {
+            { s = { common .. "revolver_trigger-01.ogg", common .. "revolver_trigger-03.ogg" }, t = 0.2 }
+        }
+    },
+
+    ["fix"] = {
         Source = "cocking",
         MinProgress = 0.5,
         SoundTable = {
@@ -525,6 +542,7 @@ SWEP.Attachments = {
         DefaultAttName = "\"FMJ\" Full Metal Jacket",
         DefaultAttIcon = Material("entities/att/arccw_uc_ammo_generic.png", "mips smooth"),
         Slot = "uc_ammo",
+        ExcludeFlags = {"329_ss"}
     },
     {
         PrintName = "Powder Load",
