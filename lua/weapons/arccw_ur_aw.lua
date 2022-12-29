@@ -123,7 +123,7 @@ SWEP.MalfunctionMean = 200
 
 SWEP.SpeedMult = 0.8
 SWEP.SightedSpeedMult = 0.625
-SWEP.SightTime = 0.6
+SWEP.SightTime = 0.35
 SWEP.ShootSpeedMult = 0.625
 
 local path = ")^weapons/arccw_ur/ak/"
@@ -322,8 +322,8 @@ SWEP.ExtraSightDist = 2
 SWEP.GuaranteeLaser = true
 
 SWEP.WorldModelOffset = {
-    pos = Vector(-7, 4, -4.5),
-    ang = Angle(-10, 0, 180)
+    pos = Vector(-7, 5, -4.8),
+    ang = Angle(-12, 0, 180)
 }
 
 SWEP.MirrorVMWM = true
