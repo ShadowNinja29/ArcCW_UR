@@ -156,17 +156,17 @@ SWEP.HoldtypeActive = "revolver"
 SWEP.HoldtypeSights = "revolver"
 
 SWEP.IronSightStruct = {
-     Pos = Vector(-2.529, 3, 1.305),
+     Pos = Vector(-2.549, 1, 1.505),
      Ang = Angle(0, 0, 0),
-     Magnification = 1,
+     Magnification = 1.1,
      SwitchToSound = "",
      ViewModelFOV = 55,
 }
 
-SWEP.ActivePos = Vector(0.2, 2, 1.5)
+SWEP.ActivePos = Vector(-0.1, 0.5, 1.9)
 SWEP.ActiveAng = Angle(0, 0, -2)
 
-SWEP.CustomizePos = Vector(-1, -2, 1)
+SWEP.CustomizePos = Vector(-1, -2, 2)
 SWEP.CustomizeAng = Angle(0, 0, 0)
 
 SWEP.CrouchPos = Vector(-2.2, 1, 0.6)
@@ -453,7 +453,7 @@ SWEP.Animations = {
         Source = "reload",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
         MinProgress = 1.3525,
-        Time = 139 / 60,
+        Time = 2.2,
         LastClip1OutTime = 0.9,
         LHIK = true,
         LHIKIn = 0.2,
@@ -475,7 +475,7 @@ SWEP.Animations = {
         Source = "reload_empty",
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_PISTOL,
         MinProgress = 1.75,
-        Time = 160 / 60,
+        Time = 2.55,
         LastClip1OutTime = 0.76,
         LHIK = true,
         LHIKIn = 0.1,
@@ -492,7 +492,7 @@ SWEP.Animations = {
             { s = rottle, t = 55 / 60, c = ca },
             { s = path .. "magin_miss.ogg", t = 60 / 60, c = ca },
             { s = path .. "magin_old.ogg", t = 66 / 60, c = ca },
-            { s = path .. "chamber.ogg", t = 94 / 60, c = ca },
+            { s = path .. "chamber.ogg", t = 90 / 60, c = ca },
             { s = rottle, t = 75 / 60, c = ca },
         },
     },
@@ -672,7 +672,27 @@ SWEP.Animations = {
 
 -- ADS animation blending, thanks fesiug --
 
-SWEP.Hook_Think = ArcCW.UC.ADSReload
+SWEP.Hook_Think = function(wep)
+    if IsValid(wep) and wep.ArcCW then
+        local vm = wep:GetOwner():GetViewModel()
+
+        local delta = 1-wep:GetSightDelta()
+
+        local bipoded = wep:GetInBipod()
+        wep.ADSBipodAnims = math.Approach(wep.ADSBipodAnims or 0, bipoded and 1 or 0, FrameTime() / 0.5)
+
+        vm:SetPoseParameter("sights", Lerp( math.ease.InOutCubic(math.max(delta, wep.ADSBipodAnims)), 0, 1)) -- thanks fesiug
+
+        local slot = wep.Attachments[3].Installed
+    if wep.Attachments[7].Installed or slot == "ur_deagle_caliber_357" then
+        vm:SetPoseParameter("light", 1)
+    elseif slot == "ur_deagle_caliber_44" then
+            vm:SetPoseParameter("light", .5)
+        else
+            vm:SetPoseParameter("light", 0)
+        end
+    end
+end
 
 
 -- Attachments --
@@ -686,7 +706,7 @@ SWEP.Attachments = {
         DefaultAttName = "Iron Sights",
         Bone = "Body",
         Offset = {
-            vpos = Vector(0, -5.3, 7),
+            vpos = Vector(0, -5.15, 6.4),
             vang = Angle(90, 0, -90),
         },
     },
@@ -749,7 +769,7 @@ SWEP.Attachments = {
         VMScale = Vector(1.1, 1.1, 1.1),
         Bone = "Body",
         Offset = {
-            vpos = Vector(0, -0.25, 0),
+            vpos = Vector(0, -0.25, -1),
             vang = Angle(90, 0, -90),
         },
     },
@@ -803,7 +823,7 @@ SWEP.Attachments = {
         Slot = "uc_ubgl",
         Bone = "Body",
         Offset = {
-            vpos = Vector(0, -4.8, 6.5),
+            vpos = Vector(0, -4.8, 6.0),
             vang = Angle(90, 0, -90),
         },
         Hidden = true,
