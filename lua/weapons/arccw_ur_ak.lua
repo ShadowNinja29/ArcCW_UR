@@ -156,13 +156,15 @@ SWEP.DistantShootSound = nil
 SWEP.DistantShootSoundSilenced = nil
 SWEP.ShootDrySound = path .. "dryfire.ogg"
 
+local tail = ")^/arccw_uc/common/762x39/"
+
 SWEP.DistantShootSoundOutdoors = {
-    path .. "fire-dist-01.ogg",
-    path .. "fire-dist-02.ogg",
-    path .. "fire-dist-03.ogg",
-    path .. "fire-dist-04.ogg",
-    path .. "fire-dist-05.ogg",
-    path .. "fire-dist-06.ogg"
+    tail .. "fire-dist-762x39-rif-ext-01.ogg",
+    tail .. "fire-dist-762x39-rif-ext-02.ogg",
+    tail .. "fire-dist-762x39-rif-ext-03.ogg",
+    tail .. "fire-dist-762x39-rif-ext-04.ogg",
+    tail .. "fire-dist-762x39-rif-ext-05.ogg",
+    tail .. "fire-dist-762x39-rif-ext-06.ogg"
 }
 SWEP.DistantShootSoundIndoors = {
     common .. "fire-dist-int-rifle-01.ogg",
@@ -200,7 +202,7 @@ SWEP.MuzzleEffect = "muzzleflash_6"
 SWEP.ShellEffect = "arccw_uc_shelleffect"
 SWEP.ShellModel = "models/weapons/arccw/uc_shells/762x39.mdl"
 SWEP.ShellPitch = 90
-SWEP.ShellScale = 1
+SWEP.ShellScale = .666
 SWEP.ShellRotateAngle = Angle(0, 0, 0)
 SWEP.UC_ShellColor = Color(0.7 * 255, 0.2 * 255, 0.2 * 255)
 
@@ -774,10 +776,8 @@ SWEP.Attachments = {
         DefaultAttName = "Standard Muzzle",
         Slot = {"muzzle","ur_ak_muzzle"},
         Bone = "tag_weapon",
-        VMScale = Vector(1.2, 1.2, 1.2),
-        WMScale = VMScale,
         Offset = {
-            vpos = Vector(0, 24.6, 2.7),
+            vpos = Vector(0, 24.1, 2.7),
             vang = Angle(0, 270, 0),
         },
         ExcludeFlags = {"ur_ak_nomuzzle"},
