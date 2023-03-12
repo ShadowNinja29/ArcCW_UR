@@ -605,19 +605,14 @@ SWEP.Animations = {
         Source = {"fire"},
         Time = 27 / 30,
         MinProgress = 0.2,
-        SoundTable = {
-            SoundTable = {{ s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0, v = 0.25 }},
-        },
+        SoundTable = {{ s = {testpath .. "mech-01.ogg", testpath .. "mech-02.ogg", testpath .. "mech-03.ogg", testpath .. "mech-04.ogg", testpath .. "mech-05.ogg", testpath .. "mech-06.ogg"}, t = 0, v = 0.25 }},
     },
 
     ["fire_iron"] = {
         Source = {"fire_iron"},
         Time = 27 / 30,
         MinProgress = 0.2,
-        SoundTable = {
-            {s = common .. "common_mech_heavy.ogg", t = 0},
-            { s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0 }
-        },
+        SoundTable = {{ s = {testpath .. "mech-01.ogg", testpath .. "mech-02.ogg", testpath .. "mech-03.ogg", testpath .. "mech-04.ogg", testpath .. "mech-05.ogg", testpath .. "mech-06.ogg"}, t = 0, v = 0.25 }},
     },
 
     ["reload"] = {
@@ -847,10 +842,10 @@ SWEP.Animations = {
         SoundTable = {
             {s = ratel,                             t = 0.07},
             {s = testpath .. "boltup.ogg",          t = 0.1},
-            {s = testpath .. "boltback.ogg",        t = 0.2},
+            {s = testpath .. "boltback.ogg",        t = 0.25},
             {s = testpath .. "boltforward.ogg",     t = 0.32},
             {s = testpath .. "eject.ogg",           t = 0.4},
-            {s = testpath .. "boltdown.ogg",        t = 0.6},
+            {s = testpath .. "boltdown.ogg",        t = 0.55},
 
             --{s = common .. "shoulder.ogg",          t = 0.7},
         },
