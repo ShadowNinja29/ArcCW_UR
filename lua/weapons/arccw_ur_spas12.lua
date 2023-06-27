@@ -165,8 +165,8 @@ SWEP.HoldtypeActive = "ar2"
 SWEP.HoldtypeSights = "rpg"
 
 SWEP.IronSightStruct = {
-     Pos = Vector(-3.765, -4, 1.3),
-     Ang = Angle(.2, 0, 1),
+     Pos = Vector(-3.835, -4, 1.55),
+     Ang = Angle(0.2, 0, 1),
      Magnification = 1.05,
      SwitchToSound = "",
 }
@@ -177,7 +177,7 @@ SWEP.SprintAng = Angle(3.5, 7, -20)
 SWEP.HolsterPos = Vector(2.5, -1, -3)
 SWEP.HolsterAng = Angle(-3.5, 20, -20)
 
-SWEP.ActivePos = Vector(0, 0, 1)
+SWEP.ActivePos = Vector(0, 0.5, 1)
 SWEP.ActiveAng = Angle(0, 0, 0)
 
 SWEP.CrouchPos = Vector(-4, -2, 0)
@@ -354,14 +354,18 @@ SWEP.Animations = {
         },
     },
     ["fire_2bst"] = {
-        Source = "fire_semi",
+        Source = "fire_freeman",
+        LHIK = true,
+        LHIKIn = 0.05,
+        LHIKEaseOut = 0.175,
+        LHIKOut = 0.65,
         ShellEjectAt = 0.01,
         SoundTable = {
             { s = {path .. "mech-01.ogg", path .. "mech-02.ogg", path .. "mech-03.ogg", path .. "mech-04.ogg", path .. "mech-05.ogg", path .. "mech-06.ogg"}, t = 0 },
             {s = common .. "common_mech_heavy.ogg", t = 0},
             {s = path1 .. "eject.ogg", t = 0.01},
         },
-        MinProgress = 0.4
+        MinProgress = 0.175
     },
     ["fire_manual"] = { -- No bolt cycling
         Source = "fire_pump",
@@ -381,6 +385,17 @@ SWEP.Animations = {
             {s = path .. "forearm_back.ogg", t = 0},
             {s = path1 .. "eject.ogg", t = 0.1},
             {s = path .. "forearm_forward.ogg", t = 0.2}, -- Not temporary
+        },
+    }, 
+	["cycle_2bst"] = {
+        Source = {"cycle_freeman", "cycle_freeman2"},
+        ShellEjectAt = 0.42,
+        MinProgress = 0.8,
+        --Time = 25 / 30,
+        SoundTable = {
+            {s = path .. "forearm_back_2bst.ogg", t = 0.3},
+            {s = path1 .. "eject.ogg", t = 0.37},
+            {s = path .. "forearm_forward_2bst.ogg", t = 0.5}, -- Not temporary
         },
     },
     ["unjam"] = {
@@ -410,7 +425,7 @@ SWEP.Animations = {
     ["sgreload_start"] = {
 		Source = "sgreload_start",
 		TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
-		RestoreAmmo = 2,
+		RestoreAmmo = 1,
 		LHIK = true,
 		LHIKIn = 0.2,
 		LHIKEaseIn = 0.2,
@@ -478,7 +493,8 @@ SWEP.Animations = {
         Source = "sgreload_start_empty",
         MinProgress = 1,
         LHIK = true,
-        LHIKIn = 0.2,
+        LHIKIn = 1.7,
+        LHIKEaseIn = 0.2,
         LHIKOut = 0,
         TPAnimStartTime = 0.5,
         ShellEjectAt = 15/30,
@@ -499,7 +515,8 @@ SWEP.Animations = {
         Source = "sgreload_start_empty_alt",
         MinProgress = 1,
         LHIK = true,
-        LHIKIn = 0.2,
+        LHIKIn = 1.6,
+        LHIKEaseIn = 0.2,
         LHIKOut = 0,
         TPAnimStartTime = 0.5,
         ShellEjectAt = .1,
@@ -700,7 +717,7 @@ SWEP.AttachmentElements = {
     ["ur_spas12_barrel_short"] = {
         VMBodygroups = {{ind = 1, bg = 1}},
         AttPosMods = {[3] = {
-            vpos = Vector(-0.02, 22.25, -0.7),
+            vpos = Vector(0, 19, 0.4),
         }}
     },
 
@@ -770,21 +787,21 @@ SWEP.Attachments = {
         Slot = {"choke", "muzzle_shotgun"},
         Bone = "spas_parent",
         Offset = {
-            vpos = Vector(-0.02, 26.9, -0.6),
+            vpos = Vector(0, 23.5, 0.4),
             vang = Angle(90, -90, -90),
         },
         ExcludeFlags = {"nomuzzle"}
     },
-    -- {
-    --     PrintName = "Underbarrel",
-    --     Slot = {"foregrip"},
-    --     Bone = "pump",
-    --     MergeSlots = {13},
-    --     Offset = {
-    --         vpos = Vector(0, -5, .1),
-    --         vang = Angle(90, -90, -90),
-    --     },
-    -- },
+	{
+		PrintName = "Underbarrel",
+		Slot = {"foregrip"},
+		Bone = "pump",
+		--MergeSlots = {13},
+		Offset = {
+			vpos = Vector(0, -5, .1),
+			vang = Angle(90, -90, -90),
+		},
+	},
     {
         PrintName = "Tactical",
         Slot = {"tac_pistol"},
@@ -837,16 +854,16 @@ SWEP.Attachments = {
             vang = Angle(90, -90, -90),
         },
     },
-    -- {
-    --     PrintName = "M203 slot",
-    --     Slot = "uc_ubgl",
-    --     Bone = "pump",
-    --     Offset = {
-    --         vpos = Vector(0, -5, 1.25),
-    --         vang = Angle(90, -90, -90),
-    --     },
-    --     Hidden = true,
-    -- },
+	{
+		PrintName = "M203 slot",
+		Slot = "uc_ubgl",
+		Bone = "pump",
+		Offset = {
+			vpos = Vector(0, -5, 1.25),
+			vang = Angle(90, -90, -90),
+		},
+		Hidden = true,
+	},
 }
 
 local lookup_barrel = {
