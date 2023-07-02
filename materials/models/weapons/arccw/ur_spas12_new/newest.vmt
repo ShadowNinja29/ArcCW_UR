@@ -4,11 +4,11 @@
     "$bumpmap" "models\weapons\arccw\ur_spas12_new\UR_SPAS_n"
     "$phongexponenttexture" "models\weapons\arccw\ur_spas12_new\UR_SPAS_e"
 
-    "$color2" "[0 0 0]"
+    "$color2" "[0.4 0.4 0.4]"
     "$blendtintbybasealpha" "1"
 
     "$phong" "1"
-    "$phongboost" "1"
+    "$phongboost" "1.8"
     "$phongfresnelranges" "[1 0.5 0]"
     "$phongalbedotint" "0"
 
