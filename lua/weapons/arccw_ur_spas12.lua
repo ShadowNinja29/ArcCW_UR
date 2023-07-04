@@ -275,7 +275,7 @@ SWEP.Hook_TranslateAnimation = function(wep,anim)
 			return "idle_empty_manual"
 		end
 		if	anim == "exit_inspect_empty" then
-			return "exit_inspect"
+			return "exit_inspect_pump_empty"
 		end
     end
 end
@@ -414,14 +414,14 @@ SWEP.Animations = {
         },
     },
     ["fire_empty"] = {
-        Source = "idle_empty_semi", -- fire_empty
+        Source = "fire_semi_empty", -- fire_empty
         ShellEjectAt = 0.01,
         SoundTable = {
             {s = path1 .. "eject.ogg", t = 0}, -- Not temporary
         },
     },
     ["fire_iron_empty"] = {
-        Source = "idle_empty_semi", -- fire_empty
+        Source = "fire_semi_empty", -- fire_empty
         ShellEjectAt = 0.01,
         SoundTable = {
             {s = path1 .. "eject.ogg", t = 0}, -- Not temporary
@@ -562,6 +562,7 @@ SWEP.Animations = {
     },
     ["sgreload_insert"] = {
         Source = "sgreload_insert",
+        LastClip1OutTime = 20/40,
         MinProgress = 0.24,
         TPAnim = ACT_HL2MP_GESTURE_RELOAD_SHOTGUN,
         TPAnimStartTime = 0.3,
@@ -653,6 +654,23 @@ SWEP.Animations = {
             {s = common .. "movement-shotgun-04.ogg", t = 2.25},
         },
     },
+    ["exit_inspect_pump_empty"] = {
+        Source = "inspect_exit_pump_empty",
+        -- time = 66 / 60,
+        LHIK = true,
+        LHIKIn = 0,
+        LHIKOut = 999, -- maybe im dumb
+        SoundTable = {
+            {s = common .. "movement-shotgun-02.ogg", t = 0.3},
+            {s = rottle, t = 0.18},
+            {s = rottle, t = 1.0},
+            {s = common .. "movement-shotgun-03.ogg", t = 1.3},
+            {s = path .. "presscheck1.ogg", t = 1.6},
+            {s = path .. "presscheck2.ogg", t = 2.1},
+            {s = rottle, t = 2.2},
+            {s = common .. "movement-shotgun-04.ogg", t = 2.25},
+        },
+    },
     ["enter_inspect_empty"] = { -- Animations needed!
         Source = "inspect_enter",
         -- time = 35 / 60,
@@ -690,7 +708,7 @@ SWEP.Animations = {
 SWEP.NoHideLeftHandInCustomization = true
 
 SWEP.BulletBones = {
-    --[1] = "1014_shell1",
+    [2] = "Shell_Extra",
 }
 
 -- Bodygroups --
@@ -770,7 +788,7 @@ SWEP.AttachmentElements = {
     },
 }
 
-SWEP.DefaultBodygroups = "0000010"
+SWEP.DefaultBodygroups = "00000100"
 
 SWEP.Attachments = {
     {
